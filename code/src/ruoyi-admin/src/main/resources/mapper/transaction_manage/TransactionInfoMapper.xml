@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.trans.mapper.TransactionInfoMapper">
+    
+    <resultMap type="TransactionInfo" id="TransactionInfoResult">
+        <result property="fStreamId"    column="f_stream_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="cardId"    column="card_id"    />
+        <result property="fId"    column="f_id"    />
+        <result property="fDealTime"    column="f_deal_time"    />
+        <result property="fDealAmount"    column="f_deal_amount"    />
+        <result property="fDealStatus"    column="f_deal_status"    />
+        <result property="fDealType"    column="f_deal_type"    />
+    </resultMap>
+
+    <sql id="selectTransactionInfoVo">
+        select f_stream_id, user_id, card_id, f_id, f_deal_time, f_deal_amount, f_deal_status, f_deal_type from Transaction_Info
+    </sql>
+
+    <select id="selectTransactionInfoList" parameterType="TransactionInfo" resultMap="TransactionInfoResult">
+        <include refid="selectTransactionInfoVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="cardId != null  and cardId != ''"> and card_id = #{cardId}</if>
+            <if test="fId != null  and fId != ''"> and f_id = #{fId}</if>
+            <if test="fDealTime != null "> and f_deal_time = #{fDealTime}</if>
+            <if test="fDealAmount != null "> and f_deal_amount = #{fDealAmount}</if>
+            <if test="fDealStatus != null "> and f_deal_status = #{fDealStatus}</if>
+            <if test="fDealType != null "> and f_deal_type = #{fDealType}</if>
+        </where>
+    </select>
+    
+    <select id="selectTransactionInfoByFStreamId" parameterType="Long" resultMap="TransactionInfoResult">
+        <include refid="selectTransactionInfoVo"/>
+        where f_stream_id = #{fStreamId}
+    </select>
+        
+    <insert id="insertTransactionInfo" parameterType="TransactionInfo" useGeneratedKeys="true" keyProperty="fStreamId">
+        insert into Transaction_Info(
+            <if test="fStreamId != null">f_stream_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="cardId != null">card_id,</if>
+            <if test="fId != null">f_id,</if>
+            <if test="fDealTime != null">f_deal_time,</if>
+            <if test="fDealAmount != null">f_deal_amount,</if>
+            <if test="fDealStatus != null">f_deal_status,</if>
+            <if test="fDealType != null">f_deal_type</if>
+        )values(
+            <if test="fStreamId != null">#{fStreamId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="cardId != null">#{cardId},</if>
+            <if test="fId != null">#{fId},</if>
+            <if test="fDealTime != null">#{fDealTime},</if>
+            <if test="fDealAmount != null">#{fDealAmount},</if>
+            <if test="fDealStatus != null">#{fDealStatus},</if>
+            <if test="fDealType != null">#{fDealType}</if>
+        )
+    </insert>
+
+    <update id="updateTransactionInfo" parameterType="TransactionInfo">
+        update Transaction_Info
+        set f_deal_status = #{fDealStatus}
+        where f_deal_status = 0
+    </update>
+
+    <delete id="deleteTransactionInfoByFStreamId" parameterType="Long">
+        update Transaction_Info
+        set f_deal_status = 2
+        where f_stream_id = #{fStreamId}
+    </delete>
+
+    <delete id="deleteTransactionInfoByFStreamIds" parameterType="String">
+        update Transaction_Info
+        set f_deal_status = 2
+        where f_stream_id in
+        <foreach item="fStreamId" collection="array" open="(" separator="," close=")">
+            #{fStreamId}
+        </foreach>
+    </delete>
+</mapper>

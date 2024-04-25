@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.card.mapper.UserCardMapper">
+    
+    <resultMap type="UserCard" id="UserCardResult">
+        <result property="cardId"    column="card_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="cardAmount"    column="card_amount"    />
+        <result property="cardStatus"    column="card_status"    />
+    </resultMap>
+
+    <sql id="selectUserCardVo">
+        select card_id, user_id, card_amount, card_status from User_Card
+    </sql>
+
+    <select id="selectUserCardList" parameterType="UserCard" resultMap="UserCardResult">
+        <include refid="selectUserCardVo"/>
+        <where>  
+            <if test="cardId != null  and cardId != ''"> and card_id = #{cardId}</if>
+            <if test="userId != null "> and user_id like concat('%', #{userId}, '%')</if>
+            <if test="cardStatus != null  and cardStatus != ''"> and card_status = #{cardStatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserCardByCardId" parameterType="String" resultMap="UserCardResult">
+        <include refid="selectUserCardVo"/>
+        where card_id = #{cardId}
+    </select>
+        
+    <insert id="insertUserCard" parameterType="UserCard">
+        insert into User_Card
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cardId != null">card_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="cardAmount != null">card_amount,</if>
+            <if test="cardStatus != null">card_status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cardId != null">#{cardId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="cardAmount != null">#{cardAmount},</if>
+            <if test="cardStatus != null">#{cardStatus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserCard" parameterType="UserCard">
+        update User_Card
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="cardAmount != null">card_amount = #{cardAmount},</if>
+            <if test="cardStatus != null">card_status = #{cardStatus},</if>
+        </trim>
+        where card_id = #{cardId}
+    </update>
+
+    <delete id="deleteUserCardByCardId" parameterType="String">
+        delete from User_Card where card_id = #{cardId}
+    </delete>
+
+    <delete id="deleteUserCardByCardIds" parameterType="String">
+        delete from User_Card where card_id in 
+        <foreach item="cardId" collection="array" open="(" separator="," close=")">
+            #{cardId}
+        </foreach>
+    </delete>
+</mapper>

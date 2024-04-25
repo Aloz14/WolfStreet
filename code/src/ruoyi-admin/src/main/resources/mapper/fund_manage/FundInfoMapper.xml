@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.fund.mapper.FundInfoMapper">
+    
+    <resultMap type="FundInfo" id="FundInfoResult">
+        <result property="fId"    column="f_id"    />
+        <result property="fName"    column="f_name"    />
+        <result property="fType"    column="f_type"    />
+        <result property="fSize"    column="f_size"    />
+        <result property="fMonitor"    column="f_monitor"    />
+        <result property="fStartTime"    column="f_start_time"    />
+        <result property="fCompany"    column="f_company"    />
+        <result property="fLevel"    column="f_level"    />
+        <result property="fRiskLevel"    column="f_risk_level"    />
+        <result property="fOverview"    column="f_overview"    />
+        <result property="fStatus"    column="f_status"    />
+    </resultMap>
+
+    <sql id="selectFundInfoVo">
+        select f_id, f_name, f_type, f_size, f_monitor, f_start_time, f_company, f_level, f_risk_level, f_overview, f_status from Fund_Info
+    </sql>
+
+    <select id="selectFundInfoList" parameterType="FundInfo" resultMap="FundInfoResult">
+        <include refid="selectFundInfoVo"/>
+        <where>  
+            <if test="fName != null  and fName != ''"> and f_name like concat('%', #{fName}, '%')</if>
+            <if test="fType != null "> and f_type = #{fType}</if>
+            <if test="fSize != 0 "> and f_size = #{fSize}</if>
+            <if test="fMonitor != null  and fMonitor != ''"> and f_monitor = #{fMonitor}</if>
+            <if test="fStartTime != null "> and f_start_time = #{fStartTime}</if>
+            <if test="fCompany != null  and fCompany != ''"> and f_company = #{fCompany}</if>
+            <if test="fLevel != 0 "> and f_level = #{fLevel}</if>
+            <if test="fRiskLevel != 0 "> and f_risk_level = #{fRiskLevel}</if>
+            <if test="fOverview != null  and fOverview != ''"> and f_overview = #{fOverview}</if>
+            <if test="fStatus != null "> and f_status = #{fStatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectFundInfoByFId" parameterType="String" resultMap="FundInfoResult">
+        <include refid="selectFundInfoVo"/>
+        where f_id = #{fId}
+    </select>
+        
+    <insert id="insertFundInfo" parameterType="FundInfo">
+        insert into Fund_Info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fId != null">f_id,</if>
+            <if test="fName != null">f_name,</if>
+            <if test="fType != null">f_type,</if>
+            <if test="fSize != null">f_size,</if>
+            <if test="fMonitor != null">f_monitor,</if>
+            <if test="fStartTime != null">f_start_time,</if>
+            <if test="fCompany != null">f_company,</if>
+            <if test="fLevel != null">f_level,</if>
+            <if test="fRiskLevel != null">f_risk_level,</if>
+            <if test="fOverview != null">f_overview,</if>
+            <if test="fStatus != null">f_status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fId != null">#{fId},</if>
+            <if test="fName != null">#{fName},</if>
+            <if test="fType != null">#{fType},</if>
+            <if test="fSize != null">#{fSize},</if>
+            <if test="fMonitor != null">#{fMonitor},</if>
+            <if test="fStartTime != null">#{fStartTime},</if>
+            <if test="fCompany != null">#{fCompany},</if>
+            <if test="fLevel != null">#{fLevel},</if>
+            <if test="fRiskLevel != null">#{fRiskLevel},</if>
+            <if test="fOverview != null">#{fOverview},</if>
+            <if test="fStatus != null">#{fStatus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateFundInfo" parameterType="FundInfo">
+        update Fund_Info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fName != null">f_name = #{fName},</if>
+            <if test="fType != null">f_type = #{fType},</if>
+            <if test="fSize != null">f_size = #{fSize},</if>
+            <if test="fMonitor != null">f_monitor = #{fMonitor},</if>
+            <if test="fStartTime != null">f_start_time = #{fStartTime},</if>
+            <if test="fCompany != null">f_company = #{fCompany},</if>
+            <if test="fLevel != null">f_level = #{fLevel},</if>
+            <if test="fRiskLevel != null">f_risk_level = #{fRiskLevel},</if>
+            <if test="fOverview != null">f_overview = #{fOverview},</if>
+            <if test="fStatus != null">f_status = #{fStatus},</if>
+        </trim>
+        where f_id = #{fId}
+    </update>
+
+    <delete id="deleteFundInfoByFId" parameterType="String">
+        delete from Fund_Info where f_id = #{fId}
+    </delete>
+
+    <delete id="deleteFundInfoByFIds" parameterType="String">
+        delete from Fund_Info where f_id in 
+        <foreach item="fId" collection="array" open="(" separator="," close=")">
+            #{fId}
+        </foreach>
+    </delete>
+</mapper>
