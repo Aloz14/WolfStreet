@@ -12,7 +12,7 @@ import com.ruoyi.framework.security.context.PermissionContextHolder;
 
 /**
  * RuoYi首创 自定义权限实现，ss取自SpringSecurity首字母
- * 
+ *
  * @author ruoyi
  */
 @Service("ss")
@@ -20,22 +20,25 @@ public class PermissionService
 {
     /**
      * 验证用户是否具备某权限
-     * 
+     *
      * @param permission 权限字符串
      * @return 用户是否具备某权限
      */
     public boolean hasPermi(String permission)
-    {
+    {   //权限信息为空
         if (StringUtils.isEmpty(permission))
         {
             return false;
         }
+        //获取当前登录的用户
         LoginUser loginUser = SecurityUtils.getLoginUser();
+        //用户为空或不具备任何权限
         if (StringUtils.isNull(loginUser) || CollectionUtils.isEmpty(loginUser.getPermissions()))
         {
             return false;
         }
         PermissionContextHolder.setContext(permission);
+        //判断该权限是否在用户权限列表内
         return hasPermissions(loginUser.getPermissions(), permission);
     }
 
@@ -81,7 +84,7 @@ public class PermissionService
 
     /**
      * 判断用户是否拥有某个角色
-     * 
+     *
      * @param role 角色字符串
      * @return 用户是否具备某角色
      */
@@ -96,9 +99,12 @@ public class PermissionService
         {
             return false;
         }
+        //一个用户可能拥有多个身份（role）
         for (SysRole sysRole : loginUser.getUser().getRoles())
         {
+            //RoleKey：角色权限
             String roleKey = sysRole.getRoleKey();
+            //超级管理员覆盖所有角色
             if (Constants.SUPER_ADMIN.equals(roleKey) || roleKey.equals(StringUtils.trim(role)))
             {
                 return true;
@@ -147,7 +153,7 @@ public class PermissionService
 
     /**
      * 判断是否包含权限
-     * 
+     *
      * @param permissions 权限列表
      * @param permission 权限字符串
      * @return 用户是否具备某权限
