@@ -8,7 +8,7 @@ spring:
             master:
                 url: jdbc:mysql://43.142.45.216:3306/ry
                 username: ry
-                password: Zz.123581321
+                password: wolfstreet
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭
