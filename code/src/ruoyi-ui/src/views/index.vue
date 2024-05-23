@@ -7,7 +7,8 @@
         <h1>系统介绍：</h1>
         <h1>Wolf基金业务操作系统</h1>
         <p>
-          本项目为软件工程课程大作业，基于RuoYi-Vue开发，感谢RuoYi-Vue团队的开源贡献。
+          本项目为WolfStreet基金管理系统，基于RuoYi-Vue开发，感谢RuoYi-Vue团队的开源贡献。
+
           开发背景：
           1. 随着经济全球化和信息技术的快速发展，金融行业面临着更加复杂和多样化的挑战。人们对于个人理财需求的增加、金融产品的多样化以及金融监管政策的不断更新，都要求金融机构提供更加专业、高效和个性化的理财服务。<br />
           2. 金融市场竞争日益激烈，金融机构需要不断提高市场占有率和客户满意度，通过推出新的金融产品、提供更好的理财服务来吸引和保留客户。为了实现这些目标，金融机构需要建立起一套高效的理财销售管理系统，以提高销售团队的工作效率、降低成本、提升客户体验。<br />
@@ -37,20 +38,19 @@
             </p>
             <p>
               <i class="el-icon-hot-water"></i> 指导教师：<br />
-              <el-link
-                href="https://sse.tongji.edu.cn/info/1208/3184.htm"
-                target="_blank"
-                >Qingfeng DU</el-link
-              >
+              Xianfeng Hu<br />
+            </p>
+
             <p>
               <i class="el-icon-user-solid"></i> 小组成员：<br />
               郑楷 2154314<br />
               郑埴 2151617<br />
+              李泽凯 2154306<br />
             </p>
             <p>
               <i class="el-icon-chat-dot-round"></i> 联系邮箱：<a
                 href="trumanzwc@gmail.com"
-                >trumanzwc@gmail.com</a
+                >zhengzalo@163.com</a
               >
             </p>
           </div>
