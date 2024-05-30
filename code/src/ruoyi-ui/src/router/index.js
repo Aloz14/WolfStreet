@@ -75,6 +75,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/marketlive_test',
+    component: Layout,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'profile',
+        component: () => import('@/views/marketlive/index'),
+        name: 'Index',
+        meta: { title: '行情_测试', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
     path: '/user',
     component: Layout,
     hidden: true,
@@ -88,6 +101,7 @@ export const constantRoutes = [
       }
     ]
   }
+  
 ]
 
 // 动态路由，基于用户权限动态去加载
