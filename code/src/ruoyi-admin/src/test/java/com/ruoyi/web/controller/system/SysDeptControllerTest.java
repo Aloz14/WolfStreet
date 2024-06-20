@@ -13,6 +13,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +36,7 @@ class SysDeptControllerTest {
     private ISysDeptService mockDeptService;
 
     @Test
-    void testList() {
+    void testList() throws Exception {
         // Setup
         // Configure ISysDeptService.selectDeptList(...).
         final SysDept sysDept = new SysDept();
@@ -61,7 +62,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testList_ISysDeptServiceReturnsNoItems() {
+    void testList_ISysDeptServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockDeptService.selectDeptList(any(SysDept.class))).thenReturn(Collections.emptyList());
 
@@ -77,7 +78,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testExcludeChild() {
+    void testExcludeChild() throws Exception {
         // Setup
         // Configure ISysDeptService.selectDeptList(...).
         final SysDept sysDept = new SysDept();
@@ -103,7 +104,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testExcludeChild_ISysDeptServiceReturnsNoItems() {
+    void testExcludeChild_ISysDeptServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockDeptService.selectDeptList(any(SysDept.class))).thenReturn(Collections.emptyList());
 
@@ -119,7 +120,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testGetInfo() {
+    void testGetInfo() throws Exception {
         // Setup
         // Configure ISysDeptService.selectDeptById(...).
         final SysDept sysDept = new SysDept();
@@ -145,7 +146,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testAdd() {
+    void testAdd() throws Exception {
         // Setup
         when(mockDeptService.checkDeptNameUnique(any(SysDept.class))).thenReturn(false);
 
@@ -162,7 +163,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testAdd_ISysDeptServiceCheckDeptNameUniqueReturnsTrue() {
+    void testAdd_ISysDeptServiceCheckDeptNameUniqueReturnsTrue() throws Exception {
         // Setup
         when(mockDeptService.checkDeptNameUnique(any(SysDept.class))).thenReturn(true);
         when(mockDeptService.insertDept(any(SysDept.class))).thenReturn(0);
@@ -180,7 +181,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testEdit() {
+    void testEdit() throws Exception {
         // Setup
         when(mockDeptService.checkDeptNameUnique(any(SysDept.class))).thenReturn(false);
 
@@ -198,7 +199,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testEdit_ISysDeptServiceCheckDeptNameUniqueReturnsTrue() {
+    void testEdit_ISysDeptServiceCheckDeptNameUniqueReturnsTrue() throws Exception {
         // Setup
         when(mockDeptService.checkDeptNameUnique(any(SysDept.class))).thenReturn(true);
         when(mockDeptService.selectNormalChildrenDeptById(0L)).thenReturn(0);
@@ -218,7 +219,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemove() throws Exception {
         // Setup
         when(mockDeptService.hasChildByDeptId(0L)).thenReturn(false);
         when(mockDeptService.checkDeptExistUser(0L)).thenReturn(false);
@@ -237,7 +238,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testRemove_ISysDeptServiceHasChildByDeptIdReturnsTrue() {
+    void testRemove_ISysDeptServiceHasChildByDeptIdReturnsTrue() throws Exception {
         // Setup
         when(mockDeptService.hasChildByDeptId(0L)).thenReturn(true);
 
@@ -253,7 +254,7 @@ class SysDeptControllerTest {
     }
 
     @Test
-    void testRemove_ISysDeptServiceCheckDeptExistUserReturnsTrue() {
+    void testRemove_ISysDeptServiceCheckDeptExistUserReturnsTrue() throws Exception {
         // Setup
         when(mockDeptService.hasChildByDeptId(0L)).thenReturn(false);
         when(mockDeptService.checkDeptExistUser(0L)).thenReturn(true);

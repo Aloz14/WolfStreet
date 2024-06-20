@@ -1,12 +1,17 @@
 package com.ruoyi.quartz.controller;
 
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.page.TableDataInfo;
+import com.ruoyi.common.exception.job.TaskException;
 import com.ruoyi.quartz.domain.SysJob;
 import com.ruoyi.quartz.service.ISysJobService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.quartz.SchedulerException;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -137,7 +142,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testAdd() {
+    void testAdd() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -155,7 +160,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testAdd_ISysJobServiceThrowsSchedulerException() {
+    void testAdd_ISysJobServiceThrowsSchedulerException() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -173,7 +178,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testEdit() {
+    void testEdit() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -191,7 +196,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testEdit_ISysJobServiceThrowsSchedulerException() {
+    void testEdit_ISysJobServiceThrowsSchedulerException() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -209,7 +214,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testChangeStatus() {
+    void testChangeStatus() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -236,7 +241,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testChangeStatus_ISysJobServiceChangeStatusThrowsSchedulerException() {
+    void testChangeStatus_ISysJobServiceChangeStatusThrowsSchedulerException() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -263,7 +268,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testRun() {
+    void testRun() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -281,7 +286,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testRun_ISysJobServiceThrowsSchedulerException() {
+    void testRun_ISysJobServiceThrowsSchedulerException() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -299,7 +304,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemove() throws SchedulerException, TaskException {
         // Setup
         // Run the test
         final AjaxResult result = sysJobControllerUnderTest.remove(new Long[]{0L});
@@ -309,7 +314,7 @@ class SysJobControllerTest {
     }
 
     @Test
-    void testRemove_ISysJobServiceThrowsSchedulerException() {
+    void testRemove_ISysJobServiceThrowsSchedulerException() throws SchedulerException, TaskException {
         // Setup
         doThrow(SchedulerException.class).when(mockJobService).deleteJobByIds(any(Long[].class));
 

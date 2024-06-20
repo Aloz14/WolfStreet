@@ -3,6 +3,8 @@ package com.ruoyi.quartz.util;
 import com.ruoyi.quartz.domain.SysJob;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,7 +23,7 @@ class AbstractQuartzJobTest {
     }
 
     @Test
-    void testExecute() {
+    void testExecute() throws JobExecutionException {
         // Setup
         final JobExecutionContext context = null;
 

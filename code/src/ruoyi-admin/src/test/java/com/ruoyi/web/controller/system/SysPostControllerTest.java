@@ -13,6 +13,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -74,7 +75,7 @@ class SysPostControllerTest {
     }
 
     @Test
-    void testExport() {
+    void testExport() throws UnsupportedEncodingException {
         // Setup
         // Configure ISysPostService.selectPostList(...).
         final SysPost sysPost = new SysPost();

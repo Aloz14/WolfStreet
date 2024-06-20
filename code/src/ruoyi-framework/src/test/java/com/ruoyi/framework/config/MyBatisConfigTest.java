@@ -1,9 +1,11 @@
 package com.ruoyi.framework.config;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.core.io.Resource;
 
 import javax.sql.DataSource;
 
@@ -13,8 +15,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 class MyBatisConfigTest {
 
-    @Mock
-    private Environment mockEnv;
 
     @InjectMocks
     private MyBatisConfig myBatisConfigUnderTest;

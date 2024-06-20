@@ -1,5 +1,9 @@
 package com.ruoyi.framework.web.service;
 
+import com.ruoyi.common.core.domain.model.RegisterBody;
+import com.ruoyi.common.core.redis.RedisCache;
+import com.ruoyi.system.service.ISysConfigService;
+import com.ruoyi.system.service.ISysUserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,7 +1,9 @@
 package com.ruoyi.quartz.util;
 
+import com.ruoyi.common.exception.job.TaskException;
 import com.ruoyi.quartz.domain.SysJob;
 import org.junit.jupiter.api.Test;
+import org.quartz.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,7 +29,7 @@ class ScheduleUtilsTest {
     }
 
     @Test
-    void testCreateScheduleJob() {
+    void testCreateScheduleJob() throws SchedulerException, TaskException {
         // Setup
         final Scheduler scheduler = null;
         final SysJob job = new SysJob();
@@ -62,7 +64,7 @@ class ScheduleUtilsTest {
     }
 
     @Test
-    void testHandleCronScheduleMisfirePolicy() {
+    void testHandleCronScheduleMisfirePolicy() throws TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);

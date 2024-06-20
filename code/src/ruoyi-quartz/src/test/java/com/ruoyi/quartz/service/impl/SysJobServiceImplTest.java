@@ -1,11 +1,14 @@
 package com.ruoyi.quartz.service.impl;
 
+import com.ruoyi.common.exception.job.TaskException;
 import com.ruoyi.quartz.domain.SysJob;
 import com.ruoyi.quartz.mapper.SysJobMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,7 +36,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testInit() {
+    void testInit() throws SchedulerException, TaskException {
         // Setup
         // Configure SysJobMapper.selectJobAll(...).
         final SysJob sysJob = new SysJob();
@@ -53,7 +56,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testInit_SysJobMapperReturnsNoItems() {
+    void testInit_SysJobMapperReturnsNoItems() throws SchedulerException, TaskException {
         // Setup
         when(mockJobMapper.selectJobAll()).thenReturn(Collections.emptyList());
 
@@ -131,7 +134,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testPauseJob() {
+    void testPauseJob() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -151,7 +154,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testResumeJob() {
+    void testResumeJob() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -171,7 +174,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testDeleteJob() {
+    void testDeleteJob() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -191,7 +194,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testDeleteJobByIds() {
+    void testDeleteJobByIds() throws SchedulerException {
         // Setup
         // Configure SysJobMapper.selectJobById(...).
         final SysJob sysJob = new SysJob();
@@ -212,7 +215,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testChangeStatus() {
+    void testChangeStatus() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -232,7 +235,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testRun() {
+    void testRun() throws SchedulerException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -260,7 +263,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testInsertJob() {
+    void testInsertJob() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -280,7 +283,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testUpdateJob() {
+    void testUpdateJob() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);
@@ -310,7 +313,7 @@ class SysJobServiceImplTest {
     }
 
     @Test
-    void testUpdateSchedulerJob() {
+    void testUpdateSchedulerJob() throws SchedulerException, TaskException {
         // Setup
         final SysJob job = new SysJob();
         job.setJobId(0L);

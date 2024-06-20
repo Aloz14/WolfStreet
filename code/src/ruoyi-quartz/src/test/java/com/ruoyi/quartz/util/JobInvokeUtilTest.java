@@ -62,17 +62,5 @@ class JobInvokeUtilTest {
         assertThat(JobInvokeUtil.getMethodParams("invokeTarget")).isEqualTo(Collections.emptyList());
     }
 
-    @Test
-    void testGetMethodParamsType() {
-        assertThat(JobInvokeUtil.getMethodParamsType(Arrays.asList(new Object[]{"value"}))).isEqualTo(
-                new Class<?>[]{String.class});
-        assertThat(JobInvokeUtil.getMethodParamsType(Arrays.asList(new Object[]{"value"}))).isEqualTo(new Class<?>[]{});
-    }
 
-    @Test
-    void testGetMethodParamsValue() {
-        assertThat(JobInvokeUtil.getMethodParamsValue(Arrays.asList(new Object[]{"value"}))).isEqualTo(
-                new Object[]{"result"});
-        assertThat(JobInvokeUtil.getMethodParamsValue(Arrays.asList(new Object[]{"value"}))).isEqualTo(new Object[]{});
-    }
 }

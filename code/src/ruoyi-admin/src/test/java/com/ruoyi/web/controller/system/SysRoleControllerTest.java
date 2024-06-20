@@ -54,7 +54,7 @@ class SysRoleControllerTest {
     private ISysDeptService mockDeptService;
 
     @Test
-    void testList() {
+    void testList() throws Exception {
         // Setup
         when(mockRoleService.selectRoleList(any(SysRole.class))).thenReturn(Arrays.asList(new SysRole(0L)));
 
@@ -70,7 +70,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testList_ISysRoleServiceReturnsNoItems() {
+    void testList_ISysRoleServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockRoleService.selectRoleList(any(SysRole.class))).thenReturn(Collections.emptyList());
 
@@ -86,7 +86,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testExport() {
+    void testExport() throws Exception {
         // Setup
         when(mockRoleService.selectRoleList(any(SysRole.class))).thenReturn(Arrays.asList(new SysRole(0L)));
 
@@ -103,7 +103,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testExport_ISysRoleServiceReturnsNoItems() {
+    void testExport_ISysRoleServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockRoleService.selectRoleList(any(SysRole.class))).thenReturn(Collections.emptyList());
 
@@ -120,7 +120,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testGetInfo() {
+    void testGetInfo() throws Exception {
         // Setup
         when(mockRoleService.selectRoleById(0L)).thenReturn(new SysRole(0L));
 
@@ -137,7 +137,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testAdd() {
+    void testAdd() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(false);
 
@@ -154,7 +154,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testAdd_ISysRoleServiceCheckRoleNameUniqueReturnsTrue() {
+    void testAdd_ISysRoleServiceCheckRoleNameUniqueReturnsTrue() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(true);
         when(mockRoleService.checkRoleKeyUnique(any(SysRole.class))).thenReturn(false);
@@ -172,7 +172,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testAdd_ISysRoleServiceCheckRoleKeyUniqueReturnsTrue() {
+    void testAdd_ISysRoleServiceCheckRoleKeyUniqueReturnsTrue() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(true);
         when(mockRoleService.checkRoleKeyUnique(any(SysRole.class))).thenReturn(true);
@@ -191,7 +191,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testEdit() {
+    void testEdit() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(false);
 
@@ -210,7 +210,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testEdit_ISysRoleServiceCheckRoleNameUniqueReturnsTrue() {
+    void testEdit_ISysRoleServiceCheckRoleNameUniqueReturnsTrue() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(true);
         when(mockRoleService.checkRoleKeyUnique(any(SysRole.class))).thenReturn(false);
@@ -230,7 +230,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testEdit_ISysRoleServiceCheckRoleKeyUniqueReturnsTrue() {
+    void testEdit_ISysRoleServiceCheckRoleKeyUniqueReturnsTrue() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(true);
         when(mockRoleService.checkRoleKeyUnique(any(SysRole.class))).thenReturn(true);
@@ -255,7 +255,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testEdit_SysPermissionServiceReturnsNoItems() {
+    void testEdit_SysPermissionServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockRoleService.checkRoleNameUnique(any(SysRole.class))).thenReturn(true);
         when(mockRoleService.checkRoleKeyUnique(any(SysRole.class))).thenReturn(true);
@@ -279,7 +279,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testDataScope() {
+    void testDataScope() throws Exception {
         // Setup
         when(mockRoleService.authDataScope(any(SysRole.class))).thenReturn(0);
 
@@ -298,7 +298,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testChangeStatus() {
+    void testChangeStatus() throws Exception {
         // Setup
         when(mockRoleService.updateRoleStatus(any(SysRole.class))).thenReturn(0);
 
@@ -317,7 +317,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemove() throws Exception {
         // Setup
         when(mockRoleService.deleteRoleByIds(any(Long[].class))).thenReturn(0);
 
@@ -333,7 +333,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testOptionselect() {
+    void testOptionselect() throws Exception {
         // Setup
         when(mockRoleService.selectRoleAll()).thenReturn(Arrays.asList(new SysRole(0L)));
 
@@ -349,7 +349,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testOptionselect_ISysRoleServiceReturnsNoItems() {
+    void testOptionselect_ISysRoleServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockRoleService.selectRoleAll()).thenReturn(Collections.emptyList());
 
@@ -365,7 +365,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testAllocatedList() {
+    void testAllocatedList() throws Exception {
         // Setup
         when(mockUserService.selectAllocatedList(any(SysUser.class))).thenReturn(Arrays.asList(new SysUser(0L)));
 
@@ -381,7 +381,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testAllocatedList_ISysUserServiceReturnsNoItems() {
+    void testAllocatedList_ISysUserServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockUserService.selectAllocatedList(any(SysUser.class))).thenReturn(Collections.emptyList());
 
@@ -397,7 +397,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testUnallocatedList() {
+    void testUnallocatedList() throws Exception {
         // Setup
         when(mockUserService.selectUnallocatedList(any(SysUser.class))).thenReturn(Arrays.asList(new SysUser(0L)));
 
@@ -413,7 +413,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testUnallocatedList_ISysUserServiceReturnsNoItems() {
+    void testUnallocatedList_ISysUserServiceReturnsNoItems() throws Exception {
         // Setup
         when(mockUserService.selectUnallocatedList(any(SysUser.class))).thenReturn(Collections.emptyList());
 
@@ -429,7 +429,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testCancelAuthUser() {
+    void testCancelAuthUser() throws Exception {
         // Setup
         when(mockRoleService.deleteAuthUser(any(SysUserRole.class))).thenReturn(0);
 
@@ -446,7 +446,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testCancelAuthUserAll() {
+    void testCancelAuthUserAll() throws Exception {
         // Setup
         when(mockRoleService.deleteAuthUsers(eq(0L), any(Long[].class))).thenReturn(0);
 
@@ -464,7 +464,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testSelectAuthUserAll() {
+    void testSelectAuthUserAll() throws Exception {
         // Setup
         when(mockRoleService.insertAuthUsers(eq(0L), any(Long[].class))).thenReturn(0);
 
@@ -483,7 +483,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testDeptTree() {
+    void testDeptTree() throws Exception {
         // Setup
         when(mockDeptService.selectDeptListByRoleId(0L)).thenReturn(Arrays.asList(0L));
 
@@ -509,7 +509,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testDeptTree_ISysDeptServiceSelectDeptListByRoleIdReturnsNoItems() {
+    void testDeptTree_ISysDeptServiceSelectDeptListByRoleIdReturnsNoItems() throws Exception {
         // Setup
         when(mockDeptService.selectDeptListByRoleId(0L)).thenReturn(Collections.emptyList());
 
@@ -535,7 +535,7 @@ class SysRoleControllerTest {
     }
 
     @Test
-    void testDeptTree_ISysDeptServiceSelectDeptTreeListReturnsNoItems() {
+    void testDeptTree_ISysDeptServiceSelectDeptTreeListReturnsNoItems() throws Exception {
         // Setup
         when(mockDeptService.selectDeptListByRoleId(0L)).thenReturn(Arrays.asList(0L));
         when(mockDeptService.selectDeptTreeList(any(SysDept.class))).thenReturn(Collections.emptyList());

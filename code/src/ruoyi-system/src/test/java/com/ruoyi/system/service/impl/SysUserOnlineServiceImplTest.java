@@ -1,5 +1,6 @@
 package com.ruoyi.system.service.impl;
 
+import com.ruoyi.common.core.domain.model.LoginUser;
 import com.ruoyi.system.domain.SysUserOnline;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

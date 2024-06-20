@@ -1,6 +1,7 @@
 package com.ruoyi.framework.security.context;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.Authentication;
 
 class AuthenticationContextHolderTest {
 
